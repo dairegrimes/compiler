@@ -37,11 +37,7 @@ int main(void)
     }
     
     
-    //(getline(input, token));
-    //cout << token.substr(1,8) << endl;
-    
-    
-    
+
     while (getline(input, token))
     {
         length = (int)token.length();
@@ -52,12 +48,13 @@ int main(void)
             
             for(y = 0; y < (length - x) + 1 ; y ++)
             {
+                //if the length of the line is 0 is will skip the iteration
                 if(length == 0)
                 {
                     continue;
                 }
                 
-                
+                // if there is whitespace it will skip the iteration
                 if(CheckSubstring(token.substr(x,y),whiteSpace) || token.substr(x,y) == "")
                 {
                     continue;
@@ -82,7 +79,7 @@ int main(void)
                     lastToken = token.substr(x,y);
                 }
                 
-                
+                // checks for variable names
                 if(token.substr(x,y) == "var")
                 {
                     cout << returnVar(token, x, y) << endl;
@@ -90,7 +87,6 @@ int main(void)
                 
             }
             
-            //  length --;
         }
     }
     
@@ -100,7 +96,7 @@ int main(void)
 
 
 
-
+// checks if is a keyword
 bool isKeyword(string token, int x, int y)
 {
     for(int i = 0; i < 26; i ++)
@@ -114,6 +110,7 @@ bool isKeyword(string token, int x, int y)
 }
 
 
+// checks if is a isSingleOperators
 bool isSingleOperators(string token, int x, int y)
 {
     for(int i = 0; i < 22; i ++)
@@ -127,7 +124,7 @@ bool isSingleOperators(string token, int x, int y)
 }
 
 
-
+// checks if is a letter
 bool isLetter(string token, int x, int y)
 {
     for(int i = 0; i < 52; i ++)
@@ -141,6 +138,7 @@ bool isLetter(string token, int x, int y)
 }
 
 
+// checks if is a Variable
 bool isVariable(string token, int x, int y)
 {
     for(int i = 0; i < 4; i ++)
@@ -154,7 +152,7 @@ bool isVariable(string token, int x, int y)
 }
 
 
-
+// checks if a string is in another string
 bool CheckSubstring(string firstString, string secondString)
 {
     if(secondString.size() > firstString.size())
@@ -183,7 +181,7 @@ bool CheckSubstring(string firstString, string secondString)
 }
 
 
-
+// returns variable name
 string returnVar(string token, int x , int y)
 {
     int i = 0;
